@@ -11,6 +11,7 @@ import "hardhat/console.sol";
 import { Base64 } from "./libraries/Base64.sol";
 
 contract MyEpicNFT is ERC721URIStorage {
+
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
 
@@ -54,8 +55,15 @@ contract MyEpicNFT is ERC721URIStorage {
       return uint256(keccak256(abi.encodePacked(input)));
   }
 
+  function getTotalNFTsMintedSoFar() public view returns (uint) {
+    return _tokenIds.current();
+  }
+
   function makeAnEpicNFT() public {
+    
     uint256 newItemId = _tokenIds.current();
+
+    require(_tokenIds.current() <= 49);
 
     // Agora pegamos uma palavra aleatoria de cada uma das 3 listas.
     string memory first = pickRandomFirstWord(newItemId);

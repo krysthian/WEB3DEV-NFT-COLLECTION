@@ -19,11 +19,16 @@
 // module.exports = {
 //   solidity: "0.8.1",
 // };
-
+require("@nomiclabs/hardhat-etherscan");
 require('@nomiclabs/hardhat-waffle');
 require('dotenv').config();
 module.exports = {
   solidity: '0.8.1',
+  etherscan: {
+    // Sua chave API key do Etherscan
+    // Obtenha a sua em https://etherscan.io/
+    apiKey: process.env.ETHERSCAN_KEY,
+  },
   networks: {
     goerli: {
       url: process.env.STAGING_ALCHEMY_KEY,
